@@ -4306,6 +4306,20 @@ body:not(.single) .site-main > article:last-of-type .entry-footer {
 	margin-left: auto;
 	margin-top: calc(2 * var(--global--spacing-vertical));
 }
+.post-thumbnail .custom-wp-post-image {
+    display: block;
+    width: auto;
+    width: 65%;
+    width: var(--responsive--aligndefault-width);
+    height: 20rem;
+    object-fit: cover;
+    /* max-width: 100%; */
+    max-width: var(--responsive--aligndefault-width);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: calc(2 * var(--global--spacing-vertical));
+}
+
 
 /**
  * Author
