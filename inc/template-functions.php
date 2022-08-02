@@ -218,20 +218,20 @@ function twenty_twenty_one_get_non_latin_css( $type = 'front-end' ) {
 
 	// Fetch site locale.
 	$locale = get_bloginfo( 'language' );
-
+ 
 	// Define fallback fonts for non-latin languages.
 	$font_family = apply_filters(
 		'twenty_twenty_one_get_localized_font_family_types',
 		array(
 
 			// Arabic.
-			'ar'    => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'ary'   => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'azb'   => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'ckb'   => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'fa-IR' => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'haz'   => array( 'Tahoma', 'Arial', 'sans-serif' ),
-			'ps'    => array( 'Tahoma', 'Arial', 'sans-serif' ),
+			'ar'    => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'ary'   => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'azb'   => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'ckb'   => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'fa-IR' => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'haz'   => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
+			'ps'    => array( 'iransans','Tahoma', 'Arial', 'sans-serif' ),
 
 			// Chinese Simplified (China) - Noto Sans SC.
 			'zh-CN' => array( '\'PingFang SC\'', '\'Helvetica Neue\'', '\'Microsoft YaHei New\'', '\'STHeiti Light\'', 'sans-serif' ),

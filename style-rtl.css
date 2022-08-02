@@ -170,17 +170,17 @@ Twenty Twenty-One is distributed under the terms of the GNU GPL.
 :root {
 
 	/* Font Family */
-	--global--font-primary: var(--font-headings, iransans-UltraLight, sans-serif);
-	--global--font-secondary: var(--font-base, iransans-UltraLight, sans-serif);
+	--global--font-primary: var(--font-headings, iransans, sans-serif);
+	--global--font-secondary: var(--font-base, iransans, sans-serif);
 
 	/* Font Size */
-	--global--font-size-base: 1.25rem;
+	--global--font-size-base: 1.15rem;
 	--global--font-size-xs: 1rem;
 	--global--font-size-sm: 1.125rem;
 	--global--font-size-md: 1.25rem;
-	--global--font-size-lg: 1.5rem;
-	--global--font-size-xl: 2.25rem;
-	--global--font-size-xxl: 4rem;
+	--global--font-size-lg: 1rem;
+	--global--font-size-xl: 1.75rem;
+	--global--font-size-xxl: 2rem;
 	--global--font-size-xxxl: 5rem;
 	--global--font-size-page-title: var(--global--font-size-xxl);
 	--global--letter-spacing: normal;
@@ -403,10 +403,10 @@ Twenty Twenty-One is distributed under the terms of the GNU GPL.
 
 	:root {
 		--global--font-size-xl: 2.5rem;
-		--global--font-size-xxl: 6rem;
-		--global--font-size-xxxl: 9rem;
+		--global--font-size-xxl: 2.5rem;
+		--global--font-size-xxxl: 5rem;
 		--heading--font-size-h3: 2rem;
-		--heading--font-size-h2: 3rem;
+		--heading--font-size-h2: 2rem;
 	}
 }
 
@@ -4117,9 +4117,9 @@ a.custom-logo-link {
 }
 
 .singular .entry-header {
-	border-bottom: 3px solid var(--global--color-border);
-	padding-bottom: calc(2 * var(--global--spacing-vertical));
-	margin-bottom: calc(3 * var(--global--spacing-vertical));
+	/* border-bottom: 3px solid var(--global--color-border); */
+	padding-bottom: calc(1 * var(--global--spacing-vertical));
+	margin-bottom: calc(1 * var(--global--spacing-vertical));
 }
 
 .home .entry-header {
@@ -4252,7 +4252,7 @@ body:not(.single) .site-main > article:last-of-type .entry-footer {
 	margin-bottom: calc(3.4 * var(--global--spacing-vertical));
 	padding-bottom: 0;
 	padding-top: calc(0.8 * var(--global--spacing-vertical));
-	border-top: 3px solid var(--separator--border-color);
+	border-top: 1px solid var(--separator--border-color);
 	border-bottom: var(--separator--height) solid transparent;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
