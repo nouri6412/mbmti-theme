@@ -839,6 +839,10 @@ template {
 	margin-left: auto;
 }
 
+.entry-content a.related-post-link{
+display: block;
+}
+
 .widget-area,
 .pagination,
 .comments-pagination,
