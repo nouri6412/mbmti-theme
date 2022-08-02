@@ -48,9 +48,9 @@ while ( have_posts() ) :
 	}
 
 	/* translators: %s: The post-type singlular name (example: Post, Page etc) */
-	$twentytwentyone_next_label = sprintf( esc_html__( 'Next %s', 'twentytwentyone' ), $twentytwentyone_post_type_name );
+	$twentytwentyone_next_label = sprintf( esc_html__( '%s بعدی', 'twentytwentyone' ), $twentytwentyone_post_type_name );
 	/* translators: %s: The post-type singlular name (example: Post, Page etc) */
-	$twentytwentyone_previous_label = sprintf( esc_html__( 'Previous %s', 'twentytwentyone' ), $twentytwentyone_post_type_name );
+	$twentytwentyone_previous_label = sprintf( esc_html__( '%s قبلی', 'twentytwentyone' ), $twentytwentyone_post_type_name );
 
 	the_post_navigation(
 		array(

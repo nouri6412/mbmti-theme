@@ -608,3 +608,25 @@ function twentytwentyone_add_ie_class() {
 	<?php
 }
 add_action( 'wp_footer', 'twentytwentyone_add_ie_class' );
+
+function time_ago_date($the_date)
+{
+
+    return human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ' . 'پیش';
+}
+add_filter('get_the_date', 'time_ago_date', 10, 1);
+
+function time_ago_comment_date($the_date)
+{
+
+    return human_time_diff(get_comment_time('U'), current_time('timestamp')) . ' ' . 'پیش';
+}
+add_filter('get_comment_date', 'time_ago_comment_date', 10, 1);
+
+
+
+function custom_get_the_date($post)
+{
+    return human_time_diff(get_the_time('U',$post), current_time('timestamp')) . ' ' . 'پیش';
+}
+
