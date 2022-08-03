@@ -931,7 +931,7 @@ display: block;
 @media only screen and (min-width: 482px) {
 
 	.site-header {
-		padding-bottom: calc(3 * var(--global--spacing-vertical));
+		padding-bottom: calc(1 * var(--global--spacing-vertical));
 	}
 }
 
@@ -3881,7 +3881,7 @@ table.wp-calendar-table caption {
 @media only screen and (min-width: 822px) {
 
 	.site-header {
-		padding-top: calc(2.4 * var(--global--spacing-vertical));
+		padding-top: calc(1 * var(--global--spacing-vertical));
 	}
 }
 
@@ -4055,12 +4055,12 @@ a.custom-logo-link {
 }
 
 .no-widgets .site-footer {
-	margin-top: calc(6 * var(--global--spacing-vertical));
+	margin-top: calc(3 * var(--global--spacing-vertical));
 }
 @media only screen and (max-width: 481px) {
 
 	.no-widgets .site-footer {
-		margin-top: calc(3 * var(--global--spacing-vertical));
+		margin-top: calc(2 * var(--global--spacing-vertical));
 	}
 }
 
@@ -4431,7 +4431,7 @@ h1.page-title {
 }
 
 .search-no-results .page-content {
-	margin-top: calc(3 * var(--global--spacing-vertical));
+	margin-top: calc(1.5 * var(--global--spacing-vertical));
 }
 
 /**
@@ -5539,7 +5539,7 @@ h1.page-title {
 @media only screen and (max-width: 481px) {
 
 	.widget-area {
-		margin-top: calc(3 * var(--global--spacing-vertical));
+		margin-top: calc(1.5 * var(--global--spacing-vertical));
 	}
 }
 
