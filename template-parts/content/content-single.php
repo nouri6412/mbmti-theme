@@ -35,6 +35,7 @@
 		$tags = wp_get_post_tags(get_the_ID());
 		if ($tags) {
 			echo '<p><strong>مطالبت مرتبط</strong></p><div>';
+			$tags1 = [];
 			foreach ($tags as $tag) {
 
 				$first_tag = $tag->term_id;
@@ -46,9 +47,16 @@
 				);
 				$my_query = new WP_Query($args);
 				if ($my_query->have_posts()) {
-					while ($my_query->have_posts()) : $my_query->the_post(); ?>
+					while ($my_query->have_posts()) : $my_query->the_post();
+
+						if (isset($tags1['tag-' . get_the_ID()])) {
+							continue;
+						}
+
+						$tags1['tag-' . get_the_ID()] = get_the_ID();
+		?>
 						<a class="related-post-link" href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-				
+
 		<?php
 					endwhile;
 				}
