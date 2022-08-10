@@ -1944,6 +1944,8 @@ input[type=reset]:hover,
 	border-style: solid;
 	border-width: 0.1rem;
 	padding: var(--global--spacing-unit);
+	text-align: left;
+    direction: ltr;
 }
 
 .wp-block-code code {
