@@ -656,7 +656,7 @@ add_filter('document_title_parts', 'my_document_title_parts');
 function my_document_title_parts($title)
 { // $title is an *array*
 	if (is_category()) {
-		$title['title'] =  single_cat_title(bloginfo('name'), false);
+		$title['title'] = bloginfo('name').' '.'دسته بندی'.' '. single_cat_title('', false);
 	}
 
 	return $title;
