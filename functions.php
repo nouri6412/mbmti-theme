@@ -651,3 +651,13 @@ function wpb_custom_query($query)
 	$query->set('order', 'ASC');
 }
 add_action('pre_get_posts', 'wpb_custom_query');
+
+add_filter('document_title_parts', 'my_document_title_parts');
+function my_document_title_parts($title)
+{ // $title is an *array*
+	if (is_category()) {
+		$title['title'] =  single_cat_title(bloginfo('name'), false);
+	}
+
+	return $title;
+}
