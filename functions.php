@@ -647,8 +647,11 @@ function custom_get_the_date($post)
 
 function wpb_custom_query($query)
 {
-	$query->set('orderby', 'date');
-	$query->set('order', 'ASC');
+	if ( ($query->is_home() && $query->is_main_query())||$query->is_archive() )
+	{
+		$query->set('orderby', 'date');
+		$query->set('order', 'ASC');
+	}
 }
 add_action('pre_get_posts', 'wpb_custom_query');
 
