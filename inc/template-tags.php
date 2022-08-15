@@ -237,23 +237,23 @@ if ( ! function_exists( 'twenty_twenty_one_the_posts_navigation' ) ) {
 		the_posts_pagination(
 			array(
 				/* translators: There is a space after page. */
-				'before_page_number' => esc_html__( 'Page ', 'twentytwentyone' ),
+				'before_page_number' => esc_html__( 'صفحه ', 'twentytwentyone' ),
 				'mid_size'           => 0,
 				'prev_text'          => sprintf(
 					'%s <span class="nav-prev-text">%s</span>',
 					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ),
 					sprintf(
 						/* translators: %s: The post-type name. */
-						esc_html__( 'Newer %s', 'twentytwentyone' ),
-						'<span class="nav-short">' . esc_html( $post_type_name ) . '</span>'
+						esc_html__( 'مطلب بعدی %s', 'twentytwentyone' ),
+						''
 					)
 				),
 				'next_text'          => sprintf(
 					'<span class="nav-next-text">%s</span> %s',
 					sprintf(
 						/* translators: %s: The post-type name. */
-						esc_html__( 'Older %s', 'twentytwentyone' ),
-						'<span class="nav-short">' . esc_html( $post_type_name ) . '</span>'
+						esc_html__( 'مطلب قبلی %s', 'twentytwentyone' ),
+						''
 					),
 					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' )
 				),
