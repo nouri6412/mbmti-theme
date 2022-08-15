@@ -667,8 +667,8 @@ function my_document_title_parts($title)
 add_action('init', 'define_ajax_url');
 function define_ajax_url()
 {
-	add_rewrite_tag('%rewrite_ajax%', '([^&/]+)');
-	add_rewrite_rule('ajax/?([^/]*)', 'index.php?rewrite_ajax=$matches[1]', 'top');
+	add_rewrite_tag('%rewrite_custom_ajax%', '([^&/]+)');
+	add_rewrite_rule('ajax/?([^/]*)', 'index.php?rewrite_custom_ajax=$matches[1]', 'top');
 }
 
 add_action('template_redirect', 'get_post_detail');
@@ -677,7 +677,7 @@ function get_post_detail()
 	global $wp_query;
 
 	# Don't do anything unless this is an AJAX request
-	$method = $wp_query->get('rewrite_ajax');
+	$method = $wp_query->get('rewrite_custom_ajax');
 	if (!$method) {
 		return;
 	}
