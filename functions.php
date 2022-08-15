@@ -670,6 +670,7 @@ function define_ajax_url()
 	add_rewrite_tag('%rewrite_custom_ajax%', '([^&/]+)');
 	add_rewrite_rule('ajax/?([^/]*)', 'index.php?rewrite_custom_ajax=$matches[1]', 'top');
 }
+// url  http://site.com/ajax/get_post_detail
 
 add_action('template_redirect', 'get_post_detail');
 function get_post_detail()
@@ -692,5 +693,6 @@ function get_post_detail()
 		];
 
 		wp_send_json_success($array, 200);
+		//wp_send_json_error
 	}
 }
