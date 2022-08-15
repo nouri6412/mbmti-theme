@@ -244,7 +244,7 @@ if ( ! function_exists( 'twenty_twenty_one_the_posts_navigation' ) ) {
 					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ),
 					sprintf(
 						/* translators: %s: The post-type name. */
-						esc_html__( 'صفحه بعدی %s', 'twentytwentyone' ),
+						esc_html__( 'صفحه قبلی %s', 'twentytwentyone' ),
 						''
 					)
 				),
@@ -252,7 +252,7 @@ if ( ! function_exists( 'twenty_twenty_one_the_posts_navigation' ) ) {
 					'<span class="nav-next-text">%s</span> %s',
 					sprintf(
 						/* translators: %s: The post-type name. */
-						esc_html__( 'صفحه قبلی %s', 'twentytwentyone' ),
+						esc_html__( 'صفحه بعدی %s', 'twentytwentyone' ),
 						''
 					),
 					is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' )
