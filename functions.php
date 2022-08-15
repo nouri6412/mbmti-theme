@@ -647,8 +647,7 @@ function custom_get_the_date($post)
 
 function wpb_custom_query($query)
 {
-	if ( ($query->is_home() && $query->is_main_query())||$query->is_archive() )
-	{
+	if (($query->is_home() && $query->is_main_query()) || $query->is_archive()) {
 		$query->set('orderby', 'date');
 		$query->set('order', 'ASC');
 	}
@@ -659,8 +658,39 @@ add_filter('document_title_parts', 'my_document_title_parts');
 function my_document_title_parts($title)
 { // $title is an *array*
 	if (is_category()) {
-		$title['title'] = bloginfo('name').' '.'دسته بندی'.' '. single_cat_title('', false);
+		$title['title'] = bloginfo('name') . ' ' . 'دسته بندی' . ' ' . single_cat_title('', false);
 	}
 
 	return $title;
+}
+
+add_action('init', 'define_ajax_url');
+function define_ajax_url()
+{
+	add_rewrite_tag('%rewrite_ajax%', '([^&/]+)');
+	add_rewrite_rule('ajax/?([^/]*)', 'index.php?rewrite_ajax=$matches[1]', 'top');
+}
+
+add_action('template_redirect', 'get_post_detail');
+function get_post_detail()
+{
+	global $wp_query;
+
+	# Don't do anything unless this is an AJAX request
+	$method = $wp_query->get('rewrite_ajax');
+	if (!$method) {
+		return;
+	}
+
+	# Check method name
+	if ($method == "get_post_detail") {
+		$post = get_post(1);
+		$array = [
+			'title' => $post->post_title,
+			'link' => get_the_permalink(1),
+			'content' => $post->post_content
+		];
+
+		wp_send_json_success($array, 200);
+	}
 }
