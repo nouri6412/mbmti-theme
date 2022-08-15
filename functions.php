@@ -684,7 +684,7 @@ function get_post_detail()
 
 	# Check method name
 	if ($method == "get_post_detail") {
-		$post = get_post(1);
+		$post = get_post($_GET["post_id"]);
 		$array = [
 			'title' => $post->post_title,
 			'link' => get_the_permalink(1),
