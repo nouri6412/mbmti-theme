@@ -733,7 +733,7 @@ function do_export_posts()
 		}
 	}
 }
-add_action('init', 'do_export_posts');
+///add_action('init', 'do_export_posts');
 
 function add_export_publish_posts_button()
 {
@@ -754,4 +754,5 @@ function add_export_publish_posts_button()
 
 	}
 }
-add_action('restrict_manage_posts', 'add_export_publish_posts_button');
+//add_action('restrict_manage_posts', 'add_export_publish_posts_button');
+
