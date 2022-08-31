@@ -620,7 +620,7 @@ function twentytwentyone_add_ie_class()
 			document.body.classList.add('is-IE');
 		}
 	</script>
-<?php
+	<?php
 }
 add_action('wp_footer', 'twentytwentyone_add_ie_class');
 
@@ -699,38 +699,59 @@ function get_post_detail()
 
 function do_export_posts()
 {
-    if ( current_user_can( 'manage_options' ) && isset( $_GET['export_posts'] ) ) {
-        $type = 'post';
-        if (isset($_GET['post_type'])) {
-            $type = $_GET['post_type'];
-        }
-        $post_status = 'all';
-        if (isset($_GET['post_status'])) {
-            $post_status = $_GET['post_status'];
-        }
-        $arg = array(
-            'post_type' => $type,
-            'post_status' => $post_status,
-            'posts_per_page' => -1,
-        );
+	if (current_user_can('manage_options') && isset($_GET['export_posts'])) {
+		$type = 'post';
+		if (isset($_GET['post_type'])) {
+			$type = $_GET['post_type'];
+		}
+		$post_status = 'all';
+		if (isset($_GET['post_status'])) {
+			$post_status = $_GET['post_status'];
+		}
+		$arg = array(
+			'post_type' => $type,
+			'post_status' => $post_status,
+			'posts_per_page' => -1,
+		);
 
-        $post_list = get_posts( $arg );
-        if ( $post_list ) {
-            header( 'Content-Encoding: UTF-8' );
-            header( 'Content-type: text/csv; charset=utf-8' );
-            header( 'Content-Disposition: attachment; filename="wp.csv"' );
-            header( 'Pragma: no-cache' );
-            header( 'Expires: 0' );
-            $file = fopen( 'php://output', 'w' );
-            fputs( $file, "\xEF\xBB\xBF" ); // UTF-8
+		$post_list = get_posts($arg);
+		if ($post_list) {
+			header('Content-Encoding: UTF-8');
+			header('Content-type: text/csv; charset=utf-8');
+			header('Content-Disposition: attachment; filename="wp.csv"');
+			header('Pragma: no-cache');
+			header('Expires: 0');
+			$file = fopen('php://output', 'w');
+			fputs($file, "\xEF\xBB\xBF"); // UTF-8
 
-            global $post;
-            foreach ( $post_list as $post ) {
-                setup_postdata( $post );
-                fputcsv( $file, array( get_the_title(), get_the_author(), get_the_permalink() ) );
-            }
-            exit();
-        }
-    }
+			global $post;
+			foreach ($post_list as $post) {
+				setup_postdata($post);
+				fputcsv($file, array(get_the_title(), get_the_author(), get_the_permalink()));
+			}
+			exit();
+		}
+	}
 }
-add_action( 'init', 'do_export_posts' );
+add_action('init', 'do_export_posts');
+
+function add_export_publish_posts_button()
+{
+	if (current_user_can('manage_options')) {
+
+		/*$screen = get_current_screen();
+        if ( isset( $screen->parent_file )
+                && ( 'edit.php' == $screen->parent_file ) ) {*/
+	?>
+		<input class="button button-primary" type="submit" id="export_posts" name="export_posts" value="خروجی CSV">
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('#export_posts').insertAfter('#post-query-submit');
+			});
+		</script>
+<?php
+		//}
+
+	}
+}
+add_action('restrict_manage_posts', 'add_export_publish_posts_button');
