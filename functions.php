@@ -697,7 +697,7 @@ function get_post_detail()
 	}
 }
 
-function do_export_posts()
+function do_export_posts() 
 {
 	if (current_user_can('manage_options') && isset($_GET['export_posts'])) {
 		$type = 'post';
