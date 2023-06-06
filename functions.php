@@ -685,14 +685,23 @@ function get_post_detail()
 
 	# Check method name
 	if ($method == "get_post_detail") {
-		$post = get_post($_GET["post_id"]);
+		$json_input=json_encode($_POST);
+		$header =isset($_POST["header"]) ? $_POST["header"]:'not header';
+			$body =isset($_POST["body"]) ? $_POST["body"]:'not body';
+				$client_id =isset($_POST["client_id"]) ? $_POST["client_id"]:'not client_id';
 		$array = [
-			'title' => $post->post_title,
-			'link' => get_the_permalink(1),
-			'content' => $post->post_content
-		];
+			//'json_input'=>$json_input,
+			'status' =>1,
+			'header' => $header,
+			'body' => $body,
+			'test' => 'سلام'
+		]; 
 
-		wp_send_json_success($array, 200);
+		header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
+	    echo	json_encode( $array, JSON_UNESCAPED_UNICODE );
+		die;
+		//wp_send_json( $array, 200,0 );
+		//wp_send_json_success($array, 200);
 		//wp_send_json_error
 	}
 }
