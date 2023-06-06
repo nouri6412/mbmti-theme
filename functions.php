@@ -686,9 +686,45 @@ function get_post_detail()
 	# Check method name
 	if ($method == "get_post_detail") {
 		$json_input=json_encode($_POST);
-		$header =isset($_POST["header"]) ? $_POST["header"]:'not header';
-			$body =isset($_POST["body"]) ? $_POST["body"]:'not body';
+		$header =isset($_POST["header"]) ? $_POST["header"]:'{}';
+			$body =isset($_POST["body"]) ? $_POST["body"]:'[]';
 				$client_id =isset($_POST["client_id"]) ? $_POST["client_id"]:'not client_id';
+
+				$c_header=json_decode($header,JSON_UNESCAPED_UNICODE);
+				$c_body=json_decode($body,JSON_UNESCAPED_UNICODE);
+
+				// trading_type, 
+				// IdBuyer,  
+				// tarikh,
+				// sh_faktor,
+				// IdPayType,  
+				// mablagh_nesiye,  
+				// sh_gomrok,  
+				// txt_made_17,  
+				// shenase_seller,  
+				// code_gomrok, 
+				// sh_sanad, 
+				// tarikh_sanad, 
+				// sh_havaleh, 
+				// tarikh_havaleh, 
+				// sh_order, 
+				// type_haml, 
+				// haml_with, 
+				// code_customer, 
+				// sh_bime, 
+				// name_bime, 
+				// tarikh_etebar, 
+				// payment_condiation, 
+				// pish_faktor, 
+				// tarikh_pish, 
+				// txt_bank, 
+				// bank_moamele, 
+				// tarikh_resid, 
+				foreach($c_header as $key=>$val)
+				{
+                  
+				}
+				
 		$array = [
 			//'json_input'=>$json_input,
 			'status' =>1,
