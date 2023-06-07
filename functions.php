@@ -690,46 +690,86 @@ function get_post_detail()
 			$body =isset($_POST["body"]) ? $_POST["body"]:'[]';
 				$client_id =isset($_POST["client_id"]) ? $_POST["client_id"]:'not client_id';
 
-				$c_header=json_decode($header,JSON_UNESCAPED_UNICODE);
-				$c_body=json_decode($body,JSON_UNESCAPED_UNICODE);
+				$c_header=json_decode(str_replace("\\","",$header),JSON_UNESCAPED_UNICODE);
+				$c_body=json_decode(str_replace("\\","",$body),JSON_UNESCAPED_UNICODE);
 
-				// trading_type, 
-				// IdBuyer,  
-				// tarikh,
-				// sh_faktor,
-				// IdPayType,  
-				// mablagh_nesiye,  
-				// sh_gomrok,  
-				// txt_made_17,  
-				// shenase_seller,  
-				// code_gomrok, 
-				// sh_sanad, 
-				// tarikh_sanad, 
-				// sh_havaleh, 
-				// tarikh_havaleh, 
-				// sh_order, 
-				// type_haml, 
-				// haml_with, 
-				// code_customer, 
-				// sh_bime, 
-				// name_bime, 
-				// tarikh_etebar, 
-				// payment_condiation, 
-				// pish_faktor, 
-				// tarikh_pish, 
-				// txt_bank, 
-				// bank_moamele, 
-				// tarikh_resid, 
-				foreach($c_header as $key=>$val)
+				$c_header=isset($c_header["Table"])?$c_header["Table"][0]:[];
+
+				//inty  نوع صورتحساب
+				//inp  الگوی صورتحساب
+				//ins موضوع صورتحساب
+
+				// sstid  شناسه کالا
+				//
+		        
+				// = > header
+				// trading_type,                   tty  
+				// tarikh,                         indatim
+				// sh_faktor,                   inno
+				// IdPayType,                    setm 
+				// mablagh_nesiye,                ins
+				// sh_gomrok,                      scln
+				// txt_made_17,                 tax17
+				// shenase_seller,                crn
+				// code_gomrok,                      scc
+				//IdBuyerType                       tob
+				//tb.CodeMelli,                     bid
+				//tb.CodeEghtesadi,                  tinb
+				//tb.CodePosti                       bpc
+
+				// IdKala,CodeKala   sstid
+				// amount,            am
+				// vahed,            mu
+				// arz,              cut
+				// mablagh_arz,        exr
+				// mablagh,           fee
+				// takhfif,           dis
+				// maliyat,          vra    
+				// other_title,      odt    
+				// other_mablagh,     odr   
+				// other_title_1,      olt
+				// other_mablagh_1,    olr
+				// shenase,             bsrn
+
+				$headerDto=[];
+                $bodyDto=[];
+
+				for($x=0;$x<count($c_body);$x++)
 				{
-                  
+					$bodyDto[$x]["Sstid"]=isset($c_body[$x]["CodeKala"])?$c_body[$x]["CodeKala"]:0;
+					$bodyDto[$x]["Am"]=isset($c_body[$x]["amount"])?$c_body[$x]["amount"]:0;
+					$bodyDto[$x]["Mu"]=isset($c_body[$x]["vahed"])?$c_body[$x]["vahed"]:0;
+					$bodyDto[$x]["Cut"]=isset($c_body[$x]["arz"])?$c_body[$x]["arz"]:0;
+					$bodyDto[$x]["Exr"]=isset($c_body[$x]["mablagh_arz"])?$c_body[$x]["mablagh_arz"]:0;
+					$bodyDto[$x]["Fee"]=isset($c_body[$x]["mablagh"])?$c_body[$x]["mablagh"]:0;
+					$bodyDto[$x]["Dis"]=isset($c_body[$x]["takhfif"])?$c_body[$x]["takhfif"]:0;
+					$bodyDto[$x]["Vra"]=isset($c_body[$x]["maliyat"])?$c_body[$x]["maliyat"]:0;
+					$bodyDto[$x]["Odt"]=isset($c_body[$x]["other_title"])?$c_body[$x]["other_title"]:'';
+					$bodyDto[$x]["Odr"]=isset($c_body[$x]["other_mablagh"])?$c_body[$x]["other_mablagh"]:0;
+					$bodyDto[$x]["Olt"]=isset($c_body[$x]["other_title_1"])?$c_body[$x]["other_title_1"]:'';
+					$bodyDto[$x]["Olr"]=isset($c_body[$x]["other_mablagh_1"])?$c_body[$x]["other_mablagh_1"]:0;
+					$bodyDto[$x]["Bsrn"]=isset($c_body[$x]["shenase"])?$c_body[$x]["shenase"]:0;
 				}
+
+
+				$headerDto["Tty"]=isset($c_header["trading_type"])?$c_header["trading_type"]:0;
+				$headerDto["Inno"]=isset($c_header["sh_faktor"])?$c_header["sh_faktor"]:0;
+				$headerDto["Setm"]=isset($c_header["IdPayType"])?$c_header["IdPayType"]:0;
+				$headerDto["Ins"]=isset($c_header["mablagh_nesiye"])?$c_header["mablagh_nesiye"]:0;
+				$headerDto["Scln"]=isset($c_header["sh_gomrok"])?$c_header["sh_gomrok"]:0;
+				$headerDto["Tax17"]=isset($c_header["txt_made_17"])?$c_header["txt_made_17"]:'';
+				$headerDto["Crn"]=isset($c_header["shenase_seller"])?$c_header["shenase_seller"]:0;
+				$headerDto["Scc"]=isset($c_header["code_gomrok"])?$c_header["code_gomrok"]:0;
+				$headerDto["Tob"]=isset($c_header["IdBuyerType"])?$c_header["IdBuyerType"]:0;
+				$headerDto["Bid"]=isset($c_header["CodeMelli"])?$c_header["CodeMelli"]:0;
+				$headerDto["Tinb"]=isset($c_header["CodeEghtesadi"])?$c_header["CodeEghtesadi"]:0;
+				$headerDto["Bpc"]=isset($c_header["CodePosti"])?$c_header["CodePosti"]:0;
 				
 		$array = [
-			//'json_input'=>$json_input,
+			//'json_input'=> $c_header,
 			'status' =>1,
-			'header' => $header,
-			'body' => $body,
+			'header' =>json_encode( $headerDto, JSON_UNESCAPED_UNICODE ),
+			'body' =>  json_encode( $bodyDto, JSON_UNESCAPED_UNICODE ) ,
 			'test' => 'سلام'
 		]; 
 
