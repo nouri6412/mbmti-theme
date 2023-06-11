@@ -803,6 +803,8 @@ function get_post_detail()
 			 {
 				$array['status']=0;
 			 }
+			 $array['counter']=$counter;
+			 $array['counter_count']=$cnt_ghabli;
 
 			 update_post_meta(get_the_ID(), "counter_count", $cnt_ghabli + 1);
 		endwhile;
