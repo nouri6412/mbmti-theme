@@ -773,6 +773,48 @@ function get_post_detail()
 			'test' => 'سلام'
 		]; 
 
+		$args = array(
+			'post_type' => 'paya',
+			'post_status' => 'publish',
+			'meta_key' => 'client_id',
+			'meta_value' => $client_id,
+		);
+		$the_query = new WP_Query($args);
+		$count = $the_query->post_count;
+
+		$counter=0;
+
+		while ($the_query->have_posts()) :
+			$the_query->the_post();
+             $cnt= get_field("counter");
+			 if(is_numeric($cnt))
+			 {
+				$counter=$cnt;
+			 }
+
+			 $cnt_ghabli = get_post_meta(get_the_ID(), 'counter_count', true);
+
+			 if(!is_numeric($cnt_ghabli))
+			 {
+				$cnt_ghabli=0;
+			 }
+
+			 if($cnt_ghabli > $counter && $counter >0)
+			 {
+				$array['status']=0;
+			 }
+
+			 update_post_meta(get_the_ID(), "counter_count", $cnt_ghabli + 1);
+		endwhile;
+
+
+
+		if($count==0)
+		{
+			$array['status']=0;
+		}
+
+
 		header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
 	    echo	json_encode( $array, JSON_UNESCAPED_UNICODE );
 		die;
@@ -839,5 +881,48 @@ function add_export_publish_posts_button()
 
 	}
 }
+
+
 //add_action('restrict_manage_posts', 'add_export_publish_posts_button');
+
+function paya_post_type()
+{
+
+    $supports = array(
+        'title', // post title
+        'thumbnail', // featured images
+		'editor',
+		'excerpt',
+        'custom-fields', // custom fields
+        'post-formats', // post formats
+		
+    );
+
+    $labels = array(
+        'name' => _x('حافظه مالیاتی', 'plural'),
+        'singular_name' => _x(' حافظه مالیاتی', 'singular'),
+        'menu_name' => _x('حافظه مالیاتی', 'admin menu'),
+        'name_admin_bar' => _x('حافظه مالیاتی', 'admin bar'),
+        'add_new' => _x('ثبت حافظه مالیاتی جدید', 'add new'),
+        'add_new_item' => "ثبت  حافظه مالیاتی جدید",
+        'new_item' => " حافظه مالیاتی جدید",
+        'edit_item' => "ویرایش  حافظه مالیاتی",
+        'view_item' => "مشاهده  حافظه مالیاتی",
+        'all_items' => "همه  حافظه مالیاتی ها",
+        'search_items' => "جستجوی  حافظه مالیاتی",
+        'not_found' => "یافت نشد"
+    );
+
+    $args = array(
+        'supports' => $supports,
+        'labels' => $labels,
+        'public' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'paya'),
+        'has_archive' => true,
+        'hierarchical' => false,
+    );
+    register_post_type('paya', $args);
+}
+add_action('init', 'paya_post_type');
 
