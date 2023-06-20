@@ -15,7 +15,11 @@
  */
 
 get_header();
-
+?>
+<div class="my-slider">
+	<?php  echo do_shortcode( '[metaslider id="624"]' ); ?>
+</div>
+<?php
 if ( have_posts() ) {
 
 	// Load posts loop.
