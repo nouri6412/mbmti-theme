@@ -757,7 +757,7 @@ function get_post_detail()
 				$headerDto["Setm"]=isset($c_header["IdPayType"])?$c_header["IdPayType"]:0;
 				$headerDto["Ins"]=isset($c_header["mablagh_nesiye"])?$c_header["mablagh_nesiye"]:0;
 				$headerDto["Scln"]=isset($c_header["sh_gomrok"])?$c_header["sh_gomrok"]:0;
-				$headerDto["Tax17"]=isset($c_header["txt_made_17"])?$c_header["txt_made_17"]:'';
+				$headerDto["Tax17"]=isset($c_header["txt_made_17"])?$c_header["txt_made_17"]:0;
 				$headerDto["Crn"]=isset($c_header["shenase_seller"])?$c_header["shenase_seller"]:0;
 				$headerDto["Scc"]=isset($c_header["code_gomrok"])?$c_header["code_gomrok"]:0;
 				$headerDto["Tob"]=isset($c_header["IdBuyerType"])?$c_header["IdBuyerType"]:0;
