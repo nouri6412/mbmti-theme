@@ -689,7 +689,7 @@ function get_post_detail()
 		$header =isset($_POST["header"]) ? $_POST["header"]:'{}';
 			$body =isset($_POST["body"]) ? $_POST["body"]:'[]';
 				$client_id =isset($_POST["client_id"]) ? $_POST["client_id"]:'not client_id';
-
+ //$str=str_replace("\\","",$header);
 				$c_header=json_decode(str_replace("\\","",$header),JSON_UNESCAPED_UNICODE);
 				$c_body=json_decode(str_replace("\\","",$body),JSON_UNESCAPED_UNICODE);
 
@@ -766,7 +766,7 @@ function get_post_detail()
 				$headerDto["Bpc"]=isset($c_header["CodePosti"])?$c_header["CodePosti"]:0;
 				
 		$array = [
-			//'json_input'=> $c_header,
+		//	'json_input'=> $c_header,
 			'status' =>1,
 			'header' =>json_encode( $headerDto, JSON_UNESCAPED_UNICODE ),
 			'body' =>  json_encode( $bodyDto, JSON_UNESCAPED_UNICODE ) ,
