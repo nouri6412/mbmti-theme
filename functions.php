@@ -685,93 +685,92 @@ function get_post_detail()
 
 	# Check method name
 	if ($method == "get_post_detail") {
-		$json_input=json_encode($_POST);
-		$header =isset($_POST["header"]) ? $_POST["header"]:'{}';
-			$body =isset($_POST["body"]) ? $_POST["body"]:'[]';
-				$client_id =isset($_POST["client_id"]) ? $_POST["client_id"]:'not client_id';
- //$str=str_replace("\\","",$header);
-				$c_header=json_decode(str_replace("\\","",$header),JSON_UNESCAPED_UNICODE);
-				$c_body=json_decode(str_replace("\\","",$body),JSON_UNESCAPED_UNICODE);
+		$json_input = json_encode($_POST);
+		$header = isset($_POST["header"]) ? $_POST["header"] : '{}';
+		$body = isset($_POST["body"]) ? $_POST["body"] : '[]';
+		$client_id = isset($_POST["client_id"]) ? $_POST["client_id"] : 'not client_id';
+		//$str=str_replace("\\","",$header);
+		$c_header = json_decode(str_replace("\\", "", $header), JSON_UNESCAPED_UNICODE);
+		$c_body = json_decode(str_replace("\\", "", $body), JSON_UNESCAPED_UNICODE);
 
-				$c_header=isset($c_header["Table"])?$c_header["Table"][0]:[];
+		$c_header = isset($c_header["Table"]) ? $c_header["Table"][0] : [];
 
-				//inty  نوع صورتحساب
-				//inp  الگوی صورتحساب
-				//ins موضوع صورتحساب
+		//inty  نوع صورتحساب
+		//inp  الگوی صورتحساب
+		//ins موضوع صورتحساب
 
-				// sstid  شناسه کالا
-				//
-		        
-				// = > header
-				// trading_type,                   tty  
-				// tarikh,                         indatim
-				// sh_faktor,                   inno
-				// IdPayType,                    setm 
-				// mablagh_nesiye,                ins
-				// sh_gomrok,                      scln
-				// txt_made_17,                 tax17
-				// shenase_seller,                crn
-				// code_gomrok,                      scc
-				//IdBuyerType                       tob
-				//tb.CodeMelli,                     bid
-				//tb.CodeEghtesadi,                  tinb
-				//tb.CodePosti                       bpc
+		// sstid  شناسه کالا
+		//
 
-				// IdKala,CodeKala   sstid
-				// amount,            am
-				// vahed,            mu
-				// arz,              cut
-				// mablagh_arz,        exr
-				// mablagh,           fee
-				// takhfif,           dis
-				// maliyat,          vra    
-				// other_title,      odt    
-				// other_mablagh,     odr   
-				// other_title_1,      olt
-				// other_mablagh_1,    olr
-				// shenase,             bsrn
+		// = > header
+		// trading_type,                   tty  
+		// tarikh,                         indatim
+		// sh_faktor,                   inno
+		// IdPayType,                    setm 
+		// mablagh_nesiye,                ins
+		// sh_gomrok,                      scln
+		// txt_made_17,                 tax17
+		// shenase_seller,                crn
+		// code_gomrok,                      scc
+		//IdBuyerType                       tob
+		//tb.CodeMelli,                     bid
+		//tb.CodeEghtesadi,                  tinb
+		//tb.CodePosti                       bpc
 
-				$headerDto=[];
-                $bodyDto=[];
+		// IdKala,CodeKala   sstid
+		// amount,            am
+		// vahed,            mu
+		// arz,              cut
+		// mablagh_arz,        exr
+		// mablagh,           fee
+		// takhfif,           dis
+		// maliyat,          vra    
+		// other_title,      odt    
+		// other_mablagh,     odr   
+		// other_title_1,      olt
+		// other_mablagh_1,    olr
+		// shenase,             bsrn
 
-				for($x=0;$x<count($c_body);$x++)
-				{
-					$bodyDto[$x]["Sstid"]=isset($c_body[$x]["CodeKala"])?$c_body[$x]["CodeKala"]:0;
-					$bodyDto[$x]["Am"]=isset($c_body[$x]["amount"])?$c_body[$x]["amount"]:0;
-					$bodyDto[$x]["Mu"]=isset($c_body[$x]["vahed"])?$c_body[$x]["vahed"]:0;
-					$bodyDto[$x]["Cut"]=isset($c_body[$x]["arz"])?$c_body[$x]["arz"]:0;
-					$bodyDto[$x]["Exr"]=isset($c_body[$x]["mablagh_arz"])?$c_body[$x]["mablagh_arz"]:0;
-					$bodyDto[$x]["Fee"]=isset($c_body[$x]["mablagh"])?$c_body[$x]["mablagh"]:0;
-					$bodyDto[$x]["Dis"]=isset($c_body[$x]["takhfif"])?$c_body[$x]["takhfif"]:0;
-					$bodyDto[$x]["Vra"]=isset($c_body[$x]["maliyat"])?$c_body[$x]["maliyat"]:0;
-					$bodyDto[$x]["Odt"]=isset($c_body[$x]["other_title"])?$c_body[$x]["other_title"]:'';
-					$bodyDto[$x]["Odr"]=isset($c_body[$x]["other_mablagh"])?$c_body[$x]["other_mablagh"]:0;
-					$bodyDto[$x]["Olt"]=isset($c_body[$x]["other_title_1"])?$c_body[$x]["other_title_1"]:'';
-					$bodyDto[$x]["Olr"]=isset($c_body[$x]["other_mablagh_1"])?$c_body[$x]["other_mablagh_1"]:0;
-					$bodyDto[$x]["Bsrn"]=isset($c_body[$x]["shenase"])?$c_body[$x]["shenase"]:0;
-				}
+		$headerDto = [];
+		$bodyDto = [];
+
+		for ($x = 0; $x < count($c_body); $x++) {
+			$bodyDto[$x]["Sstid"] = isset($c_body[$x]["CodeKala"]) ? $c_body[$x]["CodeKala"] : 0;
+			$bodyDto[$x]["Am"] = isset($c_body[$x]["amount"]) ? $c_body[$x]["amount"] : 0;
+			$bodyDto[$x]["Mu"] = isset($c_body[$x]["vahed"]) ? $c_body[$x]["vahed"] : 0;
+			$bodyDto[$x]["Cut"] = isset($c_body[$x]["arz"]) ? $c_body[$x]["arz"] : 0;
+			$bodyDto[$x]["Exr"] = isset($c_body[$x]["mablagh_arz"]) ? $c_body[$x]["mablagh_arz"] : 0;
+			$bodyDto[$x]["Fee"] = isset($c_body[$x]["mablagh"]) ? $c_body[$x]["mablagh"] : 0;
+			$bodyDto[$x]["Dis"] = isset($c_body[$x]["takhfif"]) ? $c_body[$x]["takhfif"] : 0;
+			$bodyDto[$x]["Vra"] = isset($c_body[$x]["maliyat"]) ? $c_body[$x]["maliyat"] : 0;
+			$bodyDto[$x]["Odt"] = isset($c_body[$x]["other_title"]) ? $c_body[$x]["other_title"] : '';
+			$bodyDto[$x]["Odr"] = isset($c_body[$x]["other_mablagh"]) ? $c_body[$x]["other_mablagh"] : 0;
+			$bodyDto[$x]["Olt"] = isset($c_body[$x]["other_title_1"]) ? $c_body[$x]["other_title_1"] : '';
+			$bodyDto[$x]["Olr"] = isset($c_body[$x]["other_mablagh_1"]) ? $c_body[$x]["other_mablagh_1"] : 0;
+			$bodyDto[$x]["Bsrn"] = isset($c_body[$x]["shenase"]) ? $c_body[$x]["shenase"] : 0;
+		}
 
 
-				$headerDto["Tty"]=isset($c_header["trading_type"])?$c_header["trading_type"]:0;
-				$headerDto["Inno"]=isset($c_header["sh_faktor"])?$c_header["sh_faktor"]:0;
-				$headerDto["Setm"]=isset($c_header["IdPayType"])?$c_header["IdPayType"]:0;
-				$headerDto["Ins"]=isset($c_header["mablagh_nesiye"])?$c_header["mablagh_nesiye"]:0;
-				$headerDto["Scln"]=isset($c_header["sh_gomrok"])?$c_header["sh_gomrok"]:0;
-				$headerDto["Tax17"]=isset($c_header["txt_made_17"])?$c_header["txt_made_17"]:0;
-				$headerDto["Crn"]=isset($c_header["shenase_seller"])?$c_header["shenase_seller"]:0;
-				$headerDto["Scc"]=isset($c_header["code_gomrok"])?$c_header["code_gomrok"]:0;
-				$headerDto["Tob"]=isset($c_header["IdBuyerType"])?$c_header["IdBuyerType"]:0;
-				$headerDto["Bid"]=isset($c_header["CodeMelli"])?$c_header["CodeMelli"]:0;
-				$headerDto["Tinb"]=isset($c_header["CodeEghtesadi"])?$c_header["CodeEghtesadi"]:0;
-				$headerDto["Bpc"]=isset($c_header["CodePosti"])?$c_header["CodePosti"]:0;
-				
+		$headerDto["Tty"] = isset($c_header["trading_type"]) ? $c_header["trading_type"] : 0;
+		$headerDto["Inno"] = isset($c_header["sh_faktor"]) ? $c_header["sh_faktor"] : 0;
+		$headerDto["Setm"] = isset($c_header["IdPayType"]) ? $c_header["IdPayType"] : 0;
+		$headerDto["Ins"] = isset($c_header["mablagh_nesiye"]) ? $c_header["mablagh_nesiye"] : 0;
+		$headerDto["Scln"] = isset($c_header["sh_gomrok"]) ? $c_header["sh_gomrok"] : 0;
+		$headerDto["Tax17"] = isset($c_header["txt_made_17"]) ? $c_header["txt_made_17"] : 0;
+		$headerDto["Crn"] = isset($c_header["shenase_seller"]) ? $c_header["shenase_seller"] : 0;
+		$headerDto["Scc"] = isset($c_header["code_gomrok"]) ? $c_header["code_gomrok"] : 0;
+		$headerDto["Tob"] = isset($c_header["IdBuyerType"]) ? $c_header["IdBuyerType"] : 0;
+		$headerDto["Bid"] = isset($c_header["CodeMelli"]) ? $c_header["CodeMelli"] : 0;
+		$headerDto["Tinb"] = isset($c_header["CodeEghtesadi"]) ? $c_header["CodeEghtesadi"] : 0;
+		$headerDto["Bpc"] = isset($c_header["CodePosti"]) ? $c_header["CodePosti"] : 0;
+
 		$array = [
-		//	'json_input'=> $c_header,
-			'status' =>1,
-			'header' =>json_encode( $headerDto, JSON_UNESCAPED_UNICODE ),
-			'body' =>  json_encode( $bodyDto, JSON_UNESCAPED_UNICODE ) ,
+			//	'json_input'=> $c_header,
+			'status' => 1,
+			'header' => json_encode($headerDto, JSON_UNESCAPED_UNICODE),
+			'body' =>  json_encode($bodyDto, JSON_UNESCAPED_UNICODE),
 			'test' => 'سلام'
-		]; 
+		];
 
 		$args = array(
 			'post_type' => 'paya',
@@ -782,43 +781,39 @@ function get_post_detail()
 		$the_query = new WP_Query($args);
 		$count = $the_query->post_count;
 
-		$counter=0;
+		$counter = 0;
 
 		while ($the_query->have_posts()) :
 			$the_query->the_post();
-             $cnt= get_field("counter");
-			 if(is_numeric($cnt))
-			 {
-				$counter=$cnt;
-			 }
+			$cnt = get_field("counter");
+			if (is_numeric($cnt)) {
+				$counter = $cnt;
+			}
 
-			 $cnt_ghabli = get_post_meta(get_the_ID(), 'counter_count', true);
+			$cnt_ghabli = get_post_meta(get_the_ID(), 'counter_count', true);
 
-			 if(!is_numeric($cnt_ghabli))
-			 {
-				$cnt_ghabli=0;
-			 }
+			if (!is_numeric($cnt_ghabli)) {
+				$cnt_ghabli = 0;
+			}
 
-			 if($cnt_ghabli > $counter && $counter >0)
-			 {
-				$array['status']=0;
-			 }
-			 $array['counter']=$counter;
-			 $array['counter_count']=$cnt_ghabli;
+			if ($cnt_ghabli > $counter && $counter > 0) {
+				$array['status'] = 0;
+			}
+			$array['counter'] = $counter;
+			$array['counter_count'] = $cnt_ghabli;
 
-			 update_post_meta(get_the_ID(), "counter_count", $cnt_ghabli + 1);
+			update_post_meta(get_the_ID(), "counter_count", $cnt_ghabli + 1);
 		endwhile;
 
 
 
-		if($count==0)
-		{
-			$array['status']=0;
+		if ($count == 0) {
+			$array['status'] = 0;
 		}
 
 
-		header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
-	    echo	json_encode( $array, JSON_UNESCAPED_UNICODE );
+		header('Content-Type: application/json; charset=' . get_option('blog_charset'));
+		echo	json_encode($array, JSON_UNESCAPED_UNICODE);
 		die;
 		//wp_send_json( $array, 200,0 );
 		//wp_send_json_success($array, 200);
@@ -826,7 +821,18 @@ function get_post_detail()
 	}
 }
 
-function do_export_posts() 
+add_filter('manage_paya_posts_columns', function ($columns) {
+	return array_merge($columns, ['counter_count' => __('تعداد درخواست', 'textdomain')]);
+});
+
+add_action('manage_paya_posts_custom_column', function ($column_key, $post_id) {
+	if ($column_key == 'counter_count') {
+		$count = get_post_meta($post_id, 'counter_count', true);
+		echo $count;
+	}
+}, 10, 2);
+
+function do_export_posts()
 {
 	if (current_user_can('manage_options') && isset($_GET['export_posts'])) {
 		$type = 'post';
@@ -890,41 +896,40 @@ function add_export_publish_posts_button()
 function paya_post_type()
 {
 
-    $supports = array(
-        'title', // post title
-        'thumbnail', // featured images
+	$supports = array(
+		'title', // post title
+		'thumbnail', // featured images
 		'editor',
 		'excerpt',
-        'custom-fields', // custom fields
-        'post-formats', // post formats
-		
-    );
+		'custom-fields', // custom fields
+		'post-formats', // post formats
 
-    $labels = array(
-        'name' => _x('حافظه مالیاتی', 'plural'),
-        'singular_name' => _x(' حافظه مالیاتی', 'singular'),
-        'menu_name' => _x('حافظه مالیاتی', 'admin menu'),
-        'name_admin_bar' => _x('حافظه مالیاتی', 'admin bar'),
-        'add_new' => _x('ثبت حافظه مالیاتی جدید', 'add new'),
-        'add_new_item' => "ثبت  حافظه مالیاتی جدید",
-        'new_item' => " حافظه مالیاتی جدید",
-        'edit_item' => "ویرایش  حافظه مالیاتی",
-        'view_item' => "مشاهده  حافظه مالیاتی",
-        'all_items' => "همه  حافظه مالیاتی ها",
-        'search_items' => "جستجوی  حافظه مالیاتی",
-        'not_found' => "یافت نشد"
-    );
+	);
 
-    $args = array(
-        'supports' => $supports,
-        'labels' => $labels,
-        'public' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'paya'),
-        'has_archive' => true,
-        'hierarchical' => false,
-    );
-    register_post_type('paya', $args);
+	$labels = array(
+		'name' => _x('حافظه مالیاتی', 'plural'),
+		'singular_name' => _x(' حافظه مالیاتی', 'singular'),
+		'menu_name' => _x('حافظه مالیاتی', 'admin menu'),
+		'name_admin_bar' => _x('حافظه مالیاتی', 'admin bar'),
+		'add_new' => _x('ثبت حافظه مالیاتی جدید', 'add new'),
+		'add_new_item' => "ثبت  حافظه مالیاتی جدید",
+		'new_item' => " حافظه مالیاتی جدید",
+		'edit_item' => "ویرایش  حافظه مالیاتی",
+		'view_item' => "مشاهده  حافظه مالیاتی",
+		'all_items' => "همه  حافظه مالیاتی ها",
+		'search_items' => "جستجوی  حافظه مالیاتی",
+		'not_found' => "یافت نشد"
+	);
+
+	$args = array(
+		'supports' => $supports,
+		'labels' => $labels,
+		'public' => true,
+		'query_var' => true,
+		'rewrite' => array('slug' => 'paya'),
+		'has_archive' => true,
+		'hierarchical' => false,
+	);
+	register_post_type('paya', $args);
 }
 add_action('init', 'paya_post_type');
-
